@@ -12,22 +12,13 @@ class Node<T> {
         this.next = null;
     }
 }
-
 class Source {
-    public static void linkedListValues(Node<String> head, List<String> values) {
-        // todo
+    public static int sumList(Node<Integer> head) {
         if (head == null) {
-            return;
+            return 0;
         }
-        values.add(head.val);
-        linkedListValues(head.next, values);
-    }
-
-
-    public static List<String> linkedListValues(Node<String> head) {
-        List<String> values = new ArrayList<>();
-        linkedListValues(head, values);
-        return values;
+        // todo
+        return head.val + sumList(head.next);
     }
 
     public static void run() {
@@ -35,3 +26,4 @@ class Source {
         // you may sandbox in this function , but should not remove it
     }
 }
+
