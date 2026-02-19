@@ -13,12 +13,14 @@ class Node<T> {
     }
 }
 class Source {
-    public static int sumList(Node<Integer> head) {
+    public static <T> boolean linkedListFind(Node<T> head, T target) {
         if (head == null) {
-            return 0;
+            return false;
         }
-        // todo
-        return head.val + sumList(head.next);
+        if (head.val == target) {
+            return true;
+        }
+        return linkedListFind(head.next, target);
     }
 
     public static void run() {
