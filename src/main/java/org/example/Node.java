@@ -13,15 +13,20 @@ class Node<T> {
     }
 }
 class Source {
-    public static <T> boolean linkedListFind(Node<T> head, T target) {
-        if (head == null) {
-            return false;
-        }
-        if (head.val == target) {
-            return true;
-        }
-        return linkedListFind(head.next, target);
+    public static <T> Node<T> reverseList(Node<T> head) {
+        return reverseList(head, null);
     }
+
+    public static <T> Node<T> reverseList(Node<T> head, Node<T> prev) {
+        if (head == null) {
+            return prev;
+        }
+        Node<T> next = head.next;
+        head.next = prev;
+        return reverseList(next, head);
+    }
+
+
 
     public static void run() {
         // this function behaves as `main()` for the 'run' command
