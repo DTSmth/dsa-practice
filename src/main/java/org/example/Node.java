@@ -14,35 +14,25 @@ class Node<T> {
 }
 class Source {
     public static <T> Node<T> zipperLists(Node<T> head1, Node<T> head2) {
-        Node<T> head = head1;
-        Node<T> tail = head;
-        Node<T> current1 = head1.next;
-        Node<T> current2 = head2;
-        int count = 0;
 
-        while (current1 != null && current2 != null) {
-            if (count % 2 == 0) {
-                tail.next = current2;
-                current2 = current2.next;
-            } else {
-                tail.next = current1;
-                current1 = current1.next;
-            }
-            tail = tail.next;
-            count += 1;
-        }
-
-        if (current1 != null) {
-            tail.next = current1;
-        }
-        if (current2 != null) {
-            tail.next = current2;
-        }
-
-        return head;
+        return zipperLists(head1, head2, 0);
     }
 
-
+    public static <T> Node<T> zipperLists(Node<T> head1, Node<T> head2, int count) {
+        if (head1 == null) {
+            return head2;
+        }
+        if (head2 == null) {
+            return head1;
+        }
+        if (count % 2 == 0) {
+           head1.next = zipperLists(head1.next, head2, count += 1);
+           return head1;
+        } else {
+            head2.next = zipperLists(head1, head2.next, count += 1);
+            return head2;
+        }
+    }
 
     public static void run() {
         // this function behaves as `main()` for the 'run' command
