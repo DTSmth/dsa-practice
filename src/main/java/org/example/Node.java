@@ -21,27 +21,17 @@ class Source {
         if (root == null) {
             return List.of();
         }
-        Stack<Node<String>> stack = new Stack<>();
-        stack.push(root);
-        List<String> values = new ArrayList<>();
-        while (!stack.isEmpty()) {
-            Node<String> current = stack.pop();
-            values.add(current.val);
-            if (current.right != null ) {
-                stack.push(current.right);
-            }
-            if (current.left != null) {
-                stack.push(current.left);
-            }
-        }
+        List<String> leftVals = depthFirstValues(root.left);
+        List<String> rightVals = depthFirstValues(root.right);
 
-
-        // todo
-        return values;
+        List<String> result = new ArrayList<>();
+        result.add(root.val);
+        result.addAll(leftVals);
+        result.addAll(rightVals);
+        return result;
     }
 
     public static void run() {
-
     }
 }
 
