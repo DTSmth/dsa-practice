@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.List;
+import java.util.Stack;
 import java.util.ArrayList;
 
 class Node<T> {
@@ -8,26 +9,37 @@ class Node<T> {
     Node<T> left;
     Node<T> right;
 
-    Node(T val) {
+    public Node(T val) {
         this.val = val;
         this.left = null;
         this.right = null;
     }
 }
+
 class Source {
+    public static List<String> depthFirstValues(Node<String> root) {
+        Stack<Node<String>> stack = new Stack<>();
+        stack.push(root);
+        List<String> values = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            Node<String> current = stack.pop();
+            values.add(current.val);
+            if (current.right != null ) {
+                stack.push(current.right);
+            }
+            if (current.left != null) {
+                stack.push(current.left);
+            }
+        }
+
+
+        // todo
+        return values;
+    }
+
     public static void run() {
-        // this function behaves as `main()` for the 'run' command
-        // you may sandbox in this function , but should not remove it
-        Node<String> a = new Node<>("a");
-        Node<String> b = new Node<>("b");
-        Node<String> c = new Node<>("c");
-
-        a.left = b;
-        a.right = c;
-
-        System.out.println(a.left.val);
-
 
     }
 }
+
 
