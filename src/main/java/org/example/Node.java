@@ -18,6 +18,9 @@ class Node<T> {
 
 class Source {
     public static List<String> depthFirstValues(Node<String> root) {
+        if (root == null) {
+            return List.of();
+        }
         Stack<Node<String>> stack = new Stack<>();
         stack.push(root);
         List<String> values = new ArrayList<>();
